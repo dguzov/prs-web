@@ -10,6 +10,6 @@ import com.prs.business.PurchaseRequestLineItem;
 public interface PurchaseRequestLineItemRepository extends CrudRepository<PurchaseRequestLineItem, Integer> {
 
 	Optional<PurchaseRequestLineItem> findByPurchaseRequestId(int purchaseRequestId);
-	Iterable<PurchaseRequestLineItem> findByPurchaseRequestId(PurchaseRequest purchaseRequestId);
+	Iterable<PurchaseRequestLineItem> findByPurchaseRequest(PurchaseRequest purchaseRequest);
 	
 }

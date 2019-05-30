@@ -30,7 +30,7 @@ public class VendorTests {
 	@Test
 	public void testVendorAddAndDelete() {
 		Vendor v = new Vendor("NE-001", "NewEgg", "streeeet", "citycity", "CA", 
-				"45454", "9998887777", "dsdsdsd@gmail.com", true, true);
+				"45454", "9998887777", "dsdsdsd@gmail.com", true);
 		assertNotNull(vendorRepo.save(v));
 		//assert that lastName is "lastName"
 		assertEquals("NE-001", v.getCode());

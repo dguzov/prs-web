@@ -21,14 +21,12 @@ public class Product {
 	private double price;
 	private String unit;
 	private String photoPath;
-	private boolean isActive;
 	
 	public Product() {
 		super();
 	}
 
-	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath,
-			boolean isActive) {
+	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
 		super();
 		this.id = id;
 		this.vendor = vendor;
@@ -37,11 +35,9 @@ public class Product {
 		this.price = price;
 		this.unit = unit;
 		this.photoPath = photoPath;
-		this.isActive = isActive;
 	}
 
-	public Product(Vendor vendor, String partNumber, String name, double price, String unit, String photoPath,
-			boolean isActive) {
+	public Product(Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
 		super();
 		this.vendor = vendor;
 		this.partNumber = partNumber;
@@ -49,7 +45,6 @@ public class Product {
 		this.price = price;
 		this.unit = unit;
 		this.photoPath = photoPath;
-		this.isActive = isActive;
 	}
 
 	public int getId() {
@@ -108,19 +103,12 @@ public class Product {
 		this.photoPath = photoPath;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", vendor=" + vendor + ", partNumber=" + partNumber + ", name=" + name + ", price="
-				+ price + ", unit=" + unit + ", photoPath=" + photoPath + ", isActive=" + isActive + "]";
+				+ price + ", unit=" + unit + ", photoPath=" + photoPath + "]";
 	}
+
 	
 	
-}
+	}

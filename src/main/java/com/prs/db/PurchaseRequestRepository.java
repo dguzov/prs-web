@@ -11,4 +11,5 @@ public interface PurchaseRequestRepository extends CrudRepository<PurchaseReques
 	Iterable<PurchaseRequest> findByUser(User user);
 	Iterable<PurchaseRequest> findAllByStatus (String status);
 	Optional<PurchaseRequest> findByStatus (String status);
+	Iterable<PurchaseRequest> findAllByStatusAndUserIdNot(String status, int UserId);
 }

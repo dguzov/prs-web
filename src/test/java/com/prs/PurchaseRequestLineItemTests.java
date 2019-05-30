@@ -46,7 +46,7 @@ public class PurchaseRequestLineItemTests {
 		assertNotNull(purchaseRequests);
 		PurchaseRequest pr = purchaseRequests.iterator().next();
 		
-		PurchaseRequestLineItem prli = new PurchaseRequestLineItem(pr, p, 7, true);
+		PurchaseRequestLineItem prli = new PurchaseRequestLineItem(pr, p, 7);
 		assertNotNull(purchaseRequestLineItemRepo.save(prli));
 		//assert that 7 is quantity
 		assertEquals(7, prli.getQuantity());

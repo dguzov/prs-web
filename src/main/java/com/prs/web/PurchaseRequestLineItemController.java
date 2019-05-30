@@ -9,6 +9,7 @@ import com.prs.business.JsonResponse;
 import com.prs.business.PurchaseRequest;
 import com.prs.business.PurchaseRequestLineItem;
 import com.prs.db.PurchaseRequestLineItemRepository;
+import com.prs.db.PurchaseRequestRepository;
 
 @RestController
 @RequestMapping("/puchase-request-line-items")
@@ -16,6 +17,9 @@ public class PurchaseRequestLineItemController {
 	
 	@Autowired
 	private PurchaseRequestLineItemRepository purchaseRequestLineItemRepo;
+	
+	@Autowired
+	private PurchaseRequestRepository PurchaseRequestRepo;
 	
 	@GetMapping("/")
 	public JsonResponse getAll(){
@@ -66,6 +70,7 @@ public class PurchaseRequestLineItemController {
 		JsonResponse jr = null;
 		try {
 			jr = JsonResponse.getInstance(purchaseRequestLineItemRepo.save(prli));
+			updatePurchaseRequestTotal(prli);
 		}
 		catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
@@ -80,6 +85,7 @@ public class PurchaseRequestLineItemController {
 		try {
 			if (purchaseRequestLineItemRepo.existsById(prli.getId())){
 			jr = JsonResponse.getInstance(purchaseRequestLineItemRepo.save(prli));
+			updatePurchaseRequestTotal(prli);
 		}
 			else
 				jr = JsonResponse.getInstance("PurchaseRequestLineItem id: "+prli.getId()+" does not exist and you are attempting to save it");
@@ -97,7 +103,8 @@ public class PurchaseRequestLineItemController {
 		// NOTE: May need to enhance exception handling if more than one exception type needs to be caught
 		try {
 			if (purchaseRequestLineItemRepo.existsById(prli.getId())){
-				purchaseRequestLineItemRepo.delete(prli);	
+				purchaseRequestLineItemRepo.delete(prli);
+				updatePurchaseRequestTotal(prli);
 			jr = JsonResponse.getInstance("PurchaseRequestLineItem deleted");
 		}
 			else
@@ -109,15 +116,15 @@ public class PurchaseRequestLineItemController {
 		return jr;
 	}
 	
-	public void updatePurchaseRequestTotal(PurchaseRequest pr) {
-		Iterable<PurchaseRequestLineItem> prli = purchaseRequestLineItemRepo.findByPurchaseRequestId(pr);
+	public void updatePurchaseRequestTotal(PurchaseRequestLineItem prli) {
 		double tempTotal = 0.0;
-		for (PurchaseRequestLineItem x: prli) {
-			System.out.println(x);
-			tempTotal += (x.getProduct().getPrice() * x.getQuantity());
+		PurchaseRequest pr = prli.getPurchaseRequest();
+		Iterable<PurchaseRequestLineItem> prlit = purchaseRequestLineItemRepo.findByPurchaseRequest(pr);		
+		for (PurchaseRequestLineItem x: prlit) {
+		tempTotal += (x.getQuantity() * (x.getProduct().getPrice()));
 		}
-		pr.setTotal(tempTotal);
-		System.out.println(pr.getTotal());
+		prli.getPurchaseRequest().setTotal(tempTotal);
+		PurchaseRequestRepo.save(pr);
 	}
 		
 }

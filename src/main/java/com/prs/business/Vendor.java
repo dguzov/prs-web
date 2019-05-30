@@ -20,14 +20,13 @@ public class Vendor {
 	private String phoneNumber;
 	private String email;
 	private boolean isPreApproved;
-	private boolean isActive;
 	
 	public Vendor() {
 		super();
 	}
 
 	public Vendor(int id, String code, String name, String address, String city, String state, String zip,
-			String phoneNumber, String email, boolean isPreApproved, boolean isActive) {
+			String phoneNumber, String email, boolean isPreApproved) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -39,12 +38,10 @@ public class Vendor {
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.isPreApproved = isPreApproved;
-		this.isActive = isActive;
 	}
 
-	
 	public Vendor(String code, String name, String address, String city, String state, String zip, String phoneNumber,
-			String email, boolean isPreApproved, boolean isActive) {
+			String email, boolean isPreApproved) {
 		super();
 		this.code = code;
 		this.name = name;
@@ -55,7 +52,6 @@ public class Vendor {
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.isPreApproved = isPreApproved;
-		this.isActive = isActive;
 	}
 
 	public int getId() {
@@ -138,22 +134,12 @@ public class Vendor {
 		this.isPreApproved = isPreApproved;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	@Override
 	public String toString() {
 		return "Vendor [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email
-				+ ", isPreApproved=" + isPreApproved + ", isActive=" + isActive + "]";
+				+ ", isPreApproved=" + isPreApproved + "]";
 	}
 	
 	
-	
-
-}
+	}

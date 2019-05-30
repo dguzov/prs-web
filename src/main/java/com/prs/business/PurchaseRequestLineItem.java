@@ -20,28 +20,24 @@ public class PurchaseRequestLineItem {
 	@ManyToOne
 	private Product product;
 	private int quantity;
-	private boolean isActive;
 	
 	public PurchaseRequestLineItem() {
 		super();
 	}
 
-	public PurchaseRequestLineItem(int id, PurchaseRequest purchaseRequest, Product product, int quantity,
-			boolean isActive) {
+	public PurchaseRequestLineItem(int id, PurchaseRequest purchaseRequest, Product product, int quantity) {
 		super();
 		this.id = id;
 		this.purchaseRequest = purchaseRequest;
 		this.product = product;
 		this.quantity = quantity;
-		this.isActive = isActive;
 	}
 
-	public PurchaseRequestLineItem(PurchaseRequest purchaseRequest, Product product, int quantity, boolean isActive) {
+	public PurchaseRequestLineItem(PurchaseRequest purchaseRequest, Product product, int quantity) {
 		super();
 		this.purchaseRequest = purchaseRequest;
 		this.product = product;
 		this.quantity = quantity;
-		this.isActive = isActive;
 	}
 
 	public int getId() {
@@ -76,20 +72,11 @@ public class PurchaseRequestLineItem {
 		this.quantity = quantity;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	@Override
 	public String toString() {
 		return "PurchaseRequestLineItem [id=" + id + ", purchaseRequest=" + purchaseRequest + ", product=" + product
-				+ ", quantity=" + quantity + ", isActive=" + isActive + "]";
+				+ ", quantity=" + quantity + "]";
 	}
-	
-	
 
-}
+	
+	}

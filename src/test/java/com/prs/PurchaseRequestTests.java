@@ -39,7 +39,7 @@ public class PurchaseRequestTests {
 		assertNotNull(users);
 		User u = users.iterator().next();
 		PurchaseRequest pr = new PurchaseRequest(u, "descriptionTest", "justificationTest",
-			LocalDateTime.now(), "deliveryModeTest", "statusTest", 19.99, LocalDateTime.now(), "reasonForRejectionTest", true);
+			LocalDateTime.now(), "deliveryModeTest", "statusTest", 19.99, LocalDateTime.now(), "reasonForRejectionTest");
 		assertNotNull(purchaseRequestRepo.save(pr));
 		//assert that partNumberTest is "partNumberTest"
 		assertEquals("descriptionTest", pr.getDescription());

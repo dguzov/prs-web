@@ -31,7 +31,7 @@ public class PurchaseRequestController<reasonForRejection> {
 	}
 	
 	@GetMapping("/{id}")
-	public JsonResponse get(@PathVariable int id){
+	public JsonResponse getById(@PathVariable int id){
 		JsonResponse jr = null;
 		try {
 			Optional<PurchaseRequest> pr = PurchaseRequestRepo.findById(id);
@@ -61,7 +61,6 @@ public class PurchaseRequestController<reasonForRejection> {
 		}
 		return jr;
 	}
-	
 	
 	@PostMapping("/submit-new")
 	public JsonResponse add(@RequestBody PurchaseRequest pr) {
@@ -96,22 +95,21 @@ public class PurchaseRequestController<reasonForRejection> {
 	}
 	
 	
-	@GetMapping("/list-review")
-	public JsonResponse getReview() {
+	@GetMapping("/list-review/{id}")
+	public JsonResponse getReviewAndNotEqualId(@PathVariable int id) {
 		JsonResponse jr = null;
 		try {
-			Iterable<PurchaseRequest> pr = PurchaseRequestRepo.findAllByStatus("Review");
+			Iterable<PurchaseRequest> pr = PurchaseRequestRepo.findAllByStatusAndUserIdNot("Review", id);
 			if (pr!=null)
 				jr = JsonResponse.getInstance(pr);
 			else
-				jr = JsonResponse.getInstance("No purchaseRequest found");
-				
+				jr = JsonResponse.getInstance("No purchaseRequest found with status 'Review' and not equal to UserId");
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}
 		return jr;
 	}
-			
+	
 		@PutMapping("/approve")
 		public JsonResponse setApproved(@RequestBody PurchaseRequest pr) {
 			JsonResponse jr = null;
@@ -151,7 +149,7 @@ public class PurchaseRequestController<reasonForRejection> {
 			jr = JsonResponse.getInstance(PurchaseRequestRepo.save(pr));
 		}
 			else
-				jr = JsonResponse.getInstance("PurchaseRequest id: "+pr.getId()+" does not exist and you are aattomtping to save it");
+				jr = JsonResponse.getInstance("PurchaseRequest id: "+pr.getId()+" does not exist and you are attempting to save it");
 		}
 		catch (Exception e) {
 			e.printStackTrace();

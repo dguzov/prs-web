@@ -36,7 +36,7 @@ public class ProductTests {
 		Iterable<Vendor> vendors = vendorRepo.findAll();
 		assertNotNull(vendors);
 		Vendor v = vendors.iterator().next();
-		Product p = new Product(v, "partNumberTest", "name", 19.99, "unitTest", "photopathTest", true);
+		Product p = new Product(v, "partNumberTest", "name", 19.99, "unitTest", "photopathTest");
 		assertNotNull(productRepo.save(p));
 		//assert that partNumberTest is "partNumberTest"
 		assertEquals("partNumberTest", p.getPartNumber());

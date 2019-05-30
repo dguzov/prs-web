@@ -26,15 +26,13 @@ public class PurchaseRequest {
 	private Double total;
 	private LocalDateTime submittedDate;
 	private String reasonForRejection;
-	private boolean isActive;
 	
 	public PurchaseRequest() {
 		super();
 	}
 
 	public PurchaseRequest(int id, User user, String description, String justification, LocalDateTime dateNeeded,
-			String deliveryMode, String status, Double total, LocalDateTime submittedDate, String reasonForRejection,
-			boolean isActive) {
+			String deliveryMode, String status, Double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -46,12 +44,10 @@ public class PurchaseRequest {
 		this.total = total;
 		this.submittedDate = submittedDate;
 		this.reasonForRejection = reasonForRejection;
-		this.isActive = isActive;
 	}
 
 	public PurchaseRequest(User user, String description, String justification, LocalDateTime dateNeeded,
-			String deliveryMode, String status, Double total, LocalDateTime submittedDate, String reasonForRejection,
-			boolean isActive) {
+			String deliveryMode, String status, Double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.user = user;
 		this.description = description;
@@ -62,7 +58,6 @@ public class PurchaseRequest {
 		this.total = total;
 		this.submittedDate = submittedDate;
 		this.reasonForRejection = reasonForRejection;
-		this.isActive = isActive;
 	}
 
 	public int getId() {
@@ -145,21 +140,12 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	@Override
 	public String toString() {
 		return "PurchaseRequest [id=" + id + ", user=" + user + ", description=" + description + ", justification="
 				+ justification + ", dateNeeded=" + dateNeeded + ", deliveryMode=" + deliveryMode + ", status=" + status
 				+ ", total=" + total + ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection
-				+ ", isActive=" + isActive + "]";
+				+ "]";
 	}
 	
-	
-}
+	}
