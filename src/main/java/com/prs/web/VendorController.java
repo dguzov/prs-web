@@ -9,6 +9,7 @@ import com.prs.business.JsonResponse;
 import com.prs.business.Vendor;
 import com.prs.db.VendorRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/vendors")
 public class VendorController {

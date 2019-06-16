@@ -1,5 +1,6 @@
 package com.prs.business;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class PurchaseRequest {
 	private User user;
 	private String description;
 	private String justification;
-	private LocalDateTime dateNeeded;
+	private LocalDate dateNeeded;
 	private String deliveryMode;
 	private String status;
 	private Double total;
@@ -29,9 +30,11 @@ public class PurchaseRequest {
 	
 	public PurchaseRequest() {
 		super();
+		
+		
 	}
 
-	public PurchaseRequest(int id, User user, String description, String justification, LocalDateTime dateNeeded,
+	public PurchaseRequest(int id, User user, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, Double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
@@ -46,7 +49,7 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 
-	public PurchaseRequest(User user, String description, String justification, LocalDateTime dateNeeded,
+	public PurchaseRequest(User user, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, Double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.user = user;
@@ -92,11 +95,11 @@ public class PurchaseRequest {
 		this.justification = justification;
 	}
 
-	public LocalDateTime getDateNeeded() {
+	public LocalDate getDateNeeded() {
 		return dateNeeded;
 	}
 
-	public void setDateNeeded(LocalDateTime dateNeeded) {
+	public void setDateNeeded(LocalDate dateNeeded) {
 		this.dateNeeded = dateNeeded;
 	}
 
@@ -148,4 +151,8 @@ public class PurchaseRequest {
 				+ "]";
 	}
 	
-	}
+	
+
+	
+	
+		}

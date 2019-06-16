@@ -80,11 +80,9 @@ public class PurchaseRequestController<reasonForRejection> {
 	public JsonResponse submitForReview(@RequestBody PurchaseRequest pr) {
 		JsonResponse jr = null;
 		pr.setSubmittedDate(LocalDateTime.now());
-		if (pr.getTotal()<=50.00) {
+		if (pr.getTotal()<=50.00) 
 			pr.setStatus("Approved");
-		}
-			else {pr.setStatus("Review");	
-			}
+			else pr.setStatus("Review");	
 		try {
 			jr = JsonResponse.getInstance(PurchaseRequestRepo.save(pr));
 		}
@@ -114,8 +112,10 @@ public class PurchaseRequestController<reasonForRejection> {
 		public JsonResponse setApproved(@RequestBody PurchaseRequest pr) {
 			JsonResponse jr = null;
 			try {
-			if (pr.getStatus().equals("Review"))
+			if (pr.getStatus().equals("Review")) {
 				pr.setStatus("Approved");
+			jr = JsonResponse.getInstance(PurchaseRequestRepo.save(pr));
+			}
 			else
 					jr = JsonResponse.getInstance("No purchaseRequest in status 'Review' found");	
 			} catch (Exception e) {
@@ -123,15 +123,15 @@ public class PurchaseRequestController<reasonForRejection> {
 			}
 			return jr;
 		}
-		
-		
-//check out!	
+			
 		@PutMapping("/reject")
 		public JsonResponse setRejected(@RequestBody PurchaseRequest pr, reasonForRejection rfr) {
 			JsonResponse jr = null;
 			try {
-			if (pr.getStatus().equals("Review") && rfr !=null)
+			if (pr.getStatus().equals("Review") && rfr !=null) {
 				pr.setStatus("Rejected");
+			jr = JsonResponse.getInstance(PurchaseRequestRepo.save(pr));
+			}
 			else
 					jr = JsonResponse.getInstance("No purchaseRequest in status 'Review' with 'reasonForRejection' found");	
 			} catch (Exception e) {
@@ -145,9 +145,8 @@ public class PurchaseRequestController<reasonForRejection> {
 		JsonResponse jr = null;
 		// NOTE: May need to enhance exception handling if more than one exception type needs to be caught
 		try {
-			if (PurchaseRequestRepo.existsById(pr.getId())){
+			if (PurchaseRequestRepo.existsById(pr.getId()))
 			jr = JsonResponse.getInstance(PurchaseRequestRepo.save(pr));
-		}
 			else
 				jr = JsonResponse.getInstance("PurchaseRequest id: "+pr.getId()+" does not exist and you are attempting to save it");
 		}

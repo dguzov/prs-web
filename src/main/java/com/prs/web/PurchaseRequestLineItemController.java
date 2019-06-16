@@ -12,7 +12,7 @@ import com.prs.db.PurchaseRequestLineItemRepository;
 import com.prs.db.PurchaseRequestRepository;
 
 @RestController
-@RequestMapping("/puchase-request-line-items")
+@RequestMapping("/purchase-request-line-items")
 public class PurchaseRequestLineItemController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class PurchaseRequestLineItemController {
 	}
 	
 	@GetMapping("/{id}")
-	public JsonResponse get(@PathVariable int id){
+	public JsonResponse getById(@PathVariable int id){
 		JsonResponse jr = null;
 		try {
 			Optional<PurchaseRequestLineItem> prli = purchaseRequestLineItemRepo.findById(id);

@@ -9,6 +9,7 @@ import com.prs.business.JsonResponse;
 import com.prs.business.User;
 import com.prs.db.UserRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -79,8 +80,7 @@ public class UserController {
 	@PostMapping("/")
 	public JsonResponse add(@RequestBody User u) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance exception handling if more than one exception type needs to be caught
-		try {
+			try {
 			jr = JsonResponse.getInstance(userRepo.save(u));
 		}
 		catch (Exception e) {
@@ -91,7 +91,6 @@ public class UserController {
 	@PutMapping("/")
 	public JsonResponse update(@RequestBody User u) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance exception handling if more than one exception type needs to be caught
 		try {
 			if (userRepo.existsById(u.getId())){
 			jr = JsonResponse.getInstance(userRepo.save(u));
@@ -109,7 +108,6 @@ public class UserController {
 	@DeleteMapping("/")
 	public JsonResponse delete(@RequestBody User u) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance exception handling if more than one exception type needs to be caught
 		try {
 			if (userRepo.existsById(u.getId())){
 				userRepo.delete(u);	
@@ -123,23 +121,6 @@ public class UserController {
 		}
 		return jr;
 	}
-		
-//	@GetMapping("/authenticate")
-//	public JsonResponse authenticate(@RequestBody User u){
-//		JsonResponse jr = null;
-//		try {
-//			Optional<User> user = userRepo.authenticate(u.getUserName(), u.getPassword());
-//			if (user.isPresent())
-//			jr = JsonResponse.getInstance(user);
-//			else 
-//				jr = JsonResponse.getInstance("Nothing found for userName "+u.getUserName() + " and password combination");
-//		}
-//		catch (Exception e) {
-//			jr = JsonResponse.getInstance(e);
-//		}
-//		return jr;
-//	}
-	
 	
 	
 	
